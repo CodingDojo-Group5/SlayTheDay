@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.landing-b {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28rem;
+}
+
+.c-name {
+    font-size: 3rem;
+    color: transparent;
+    font-weight: 800;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+}
+
+.c-name > span {
+    background: linear-gradient(90deg, #00008B , #00aeef);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.hero {
+    font-weight: 600;
+    pointer-events: none;
+}
+
+.bounce {
+    position: relative;
+    z-index: -5;
+    width: 8rem;
+    top: 3rem;
+    left: -50px;
+}
+
+.lb-left {
+    margin-bottom: 7rem;
+}
+
+.l-form {
+    box-shadow:
+    0.8px 0.2px 1.9px rgba(0, 0, 0, 0.008),
+    1.6px 0.4px 4.3px rgba(0, 0, 0, 0.01),
+    2.4px 0.7px 7.7px rgba(0, 0, 0, 0.01),
+    3.8px 1.1px 12.8px rgba(0, 0, 0, 0.011),
+    6.8px 1.9px 21.2px rgba(0, 0, 0, 0.013),
+    14.5px 4.1px 37px rgba(0, 0, 0, 0.019),
+    42px 12px 80px rgba(0, 0, 0, 0.04);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+}
+
+input[type ="text"] {
+    width: 20rem;
+    height: 2rem;
+    padding: 10px;
+    border-radius: 10px;
+    border: gainsboro 1px solid;
+    font-size: 15px;
+}
+
+.l-btn {
+    padding: 15px 8.7rem;
+    border-radius: 10px;
+    border: gainsboro 1px solid;
+    background: #00aeef;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.l-create {
+    background-color: red;
+    width: 19rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
+.line {
+    width: 21rem;
+    height: 2px;
+    background-color: rgb(165, 165, 165);
+    margin: 1rem 0rem;
+}
+
+.l-c-btn {
+    padding: 15px 6rem;
+    border-radius: 10px;
+    border: gainsboro 1px solid;
+    background: rgb(2, 220, 2);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.errors {
+    color: red;
+    margin-left: 2px;
+    font-size: 15px;
+}

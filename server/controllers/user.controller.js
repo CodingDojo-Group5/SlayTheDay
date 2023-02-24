@@ -18,12 +18,12 @@ module.exports = {
         },
     login: async(req, res) => {
         const user = await User.findOne({ email: req.body.email });
-        if(user == null) {
-            return res.status(400).send('Email address not found');
+        if(user === null) {
+            return res.status(400).json({message: 'Email address not found'});
         }
         const correctPassword = await bcrypt.compare(req.body.password, user.password);
         if(!correctPassword){
-            return res.status(400).send('Incorrect Password');
+            return res.status(400).json({message: 'Incorrect Password'});
         }
         const userToken = jwt.sign({ id: user._id, firstName: user.firstName }, process.env.SECRET_KEY);
 
