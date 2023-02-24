@@ -70,7 +70,7 @@ body {
     border-radius: 10px;
 }
 
-input[type ="text"] {
+input[type ="text"], input[type ="password"] {
     width: 20rem;
     height: 2rem;
     padding: 10px;
@@ -121,3 +121,31 @@ input[type ="text"] {
     margin-left: 2px;
     font-size: 15px;
 }
+
+.f-c-btn {
+    padding: 15px 8.7rem;
+    border-radius: 10px;
+    border: gainsboro 1px solid;
+    background: rgb(2, 220, 2);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.f-wrapper {
+    display: flex;
+    gap: 1rem;
+}
+
+.f-names {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+}
+
+.f-names > input[type="text"]{
+    width: 9rem;
+}
+
+
