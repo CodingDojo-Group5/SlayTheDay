@@ -52,7 +52,7 @@
                     <div className='errors'>{errors && (errors.message || (errors.data && errors.data.message)) ? (errors.message || errors.data.message) : null}</div>
                 </div>
                 <div>
-                    <input onChange={handleLoginInputs} name='password' type="text" placeholder='Password'/>
+                    <input onChange={handleLoginInputs} name='password' type="password" placeholder='Password'/>
                 </div>
                 <input type="submit" value="Log In" className='l-btn'/>
                 <div className="line"></div>
