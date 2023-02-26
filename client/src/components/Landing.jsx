@@ -21,7 +21,7 @@ const Landing = () => {
     const handleLogin = (e) => {
         e.preventDefault()
         axios.post("http://localhost:8000/api/user/:id/login", login, { withCredentials: true })
-            .then((res) => { console.log(res); navigate('/tasks') })
+            .then((res) => { console.log(res); navigate('/user/todos') })
             .catch((err) => {
                 console.log(err)
                 setErrors(err.response.data);
