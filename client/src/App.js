@@ -18,7 +18,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Landing />} />
           <Route path='/create' element={<Create />} />
-          <Route element={<Main />} path="/tasks" />
+          <Route element={<Main />} path="/user/todos" />
           <Route element={<CreateTask />} path='/todo/new' />
         </Routes>
       </div>

@@ -1,22 +1,19 @@
 import * as React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import TaskButton from './TaskButton';
-import CreateTask from './CreateTask';
 import { Card, Form, Row, Col, Container } from 'react-bootstrap'
 
 
 
 const TaskList = (props) => {
-    const { todos, settodos } = props;
+    const { todos, setTodos } = props;
 
     useEffect(() => {
-        axios.get("http://localhost:8000/api/user/todos")
+        axios.get("http://localhost:8000/api/user/todos", { withCredentials: true })
             .then((res) => {
                 console.log(res.data);
-                settodos(res.data);
+                setTodos(res.data);
             })
             .catch((err) => console.log(err));
     }, [])
@@ -25,23 +22,10 @@ const TaskList = (props) => {
 
 
     return (
-        <div>
+        <div style={{ width: '800px', marginLeft: '400px' }}>
 
             <h1>Task List </h1>
-            <CreateTask />
-
             <hr />
-            <div>
-                {/* {todos.map((task, index) => (
-                    <div key={index}>
-                        <p>
-                            {task.todos}
-                        </p>
-
-                    </div>
-                ))} */}
-
-            </div>
             <Container>
                 <Row >
 
@@ -53,23 +37,11 @@ const TaskList = (props) => {
 
                     <Col>
                         <h2>In Progress</h2>
-                        <Form>
-                            <Form.Check
-                                type='checkbox'
 
-                            />
-
-                        </Form>
                     </Col>
                     <Col>
                         <h2> Completed</h2>
-                        <Form>
-                            <Form.Check
-                                type='checkbox'
 
-                            />
-
-                        </Form>
                     </Col>
                 </Row>
             </Container>

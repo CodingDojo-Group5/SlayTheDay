@@ -1,13 +1,13 @@
 import * as React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap'
 import { Link, useParams, useNavigate } from "react-router-dom";
 
 
-const UpdateForm = () => {
+const UpdateForm = (props) => {
     const { id } = useParams();
+    const { todos, setTodos } = props;
     const [task, setTask] = useState('');
     const [dueDate, setDueDate] = useState('');
     const [todoStatus, setToDoStatus] = useState('');
@@ -31,13 +31,25 @@ const UpdateForm = () => {
             dueDate,
             petName,
             todoStatus
-        })
+        }, { withCredentials: true })
             .then(res => {
                 console.log(res);
                 console.log(res.data);
                 navigate("/tasks")
             })
             .catch(err => console.log(err))
+    }
+
+    const deleteTask = (taskId) => {
+        axios.delete('http://localhost:8000/api/reservations/' + taskId)
+            .then(res => {
+                console.log(res.data);
+                const newList = todos.filter((todos, index) => todos._id !== taskId)
+                setTodos(newList);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }
 
 
@@ -79,8 +91,11 @@ const UpdateForm = () => {
 
                 </Form.Group>
                 <Button value="create" type="submit" variant="outline-success">
-                    Add Task
-                </Button>
+                    Finish Edit
+                </Button>{' '}
+                <Button variant="outline-danger" onClick={() => deleteTask(todos._id)} >
+
+                </Button>{' '}
 
 
             </Form>
