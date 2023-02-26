@@ -4,7 +4,7 @@ const { authenticate } = require('../config/jwt.config')
 
 module.exports = (app) => {
     app.post("/api/user/register", UserController.register) 
-    app.post("/api/user/:id/login", UserController.login) 
+    app.post("/api/user/login", UserController.login) 
     app.get("/api/user/logout", UserController.logout)
     app.post("/api/todo/new", authenticate, TodoController.createTodo)
     app.get("/api/user/todos", authenticate, UserController.getUserTodos) 

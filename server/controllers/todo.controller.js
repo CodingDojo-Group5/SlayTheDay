@@ -23,8 +23,9 @@ module.exports = {
             .catch(err => res.json(err))
     },
 
-    deleteTodo: (req, res) => {
-        Todo.deleteOne({_id: req.params.id})
+    deleteTodo: async (req, res) => {
+        await User.findOneAndUpdate({_id: req.user.id}, {$pull: {todos: req.params.id}})
+        await Todo.deleteOne({_id: req.params.id})
             .then(deletedTodo => res.json(deletedTodo))
             .catch((err) => console.log(err));
     }
