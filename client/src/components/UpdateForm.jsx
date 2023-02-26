@@ -1,8 +1,8 @@
 import * as React from 'react';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap'
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, } from "react-router-dom";
 
 
 const UpdateForm = (props) => {
@@ -14,11 +14,11 @@ const UpdateForm = (props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/todo/' + id + '/update')
+        axios.get('http://localhost:8000/api/todo/' + id + '/update/')
             .then((res) => {
-                setTask(res.data.task);
-                setDueDate(res.data.dueDate);
-                setToDoStatus(res.data.todoStatus);
+                setTask(res.data.user.task);
+                setDueDate(res.data.user.dueDate);
+                setToDoStatus(res.data.user.todoStatus);
                 console.log(res.data);
             })
             .catch((err) => console.log(err));
@@ -29,13 +29,12 @@ const UpdateForm = (props) => {
         axios.put('http://localhost:8000/api/todo/' + id + '/update', {
             task,
             dueDate,
-            petName,
             todoStatus
         }, { withCredentials: true })
             .then(res => {
                 console.log(res);
                 console.log(res.data);
-                navigate("/tasks")
+                navigate("/user/todos")
             })
             .catch(err => console.log(err))
     }
@@ -51,10 +50,6 @@ const UpdateForm = (props) => {
                 console.log(err);
             });
     }
-
-
-
-
 
     return (
         <div>
@@ -99,10 +94,7 @@ const UpdateForm = (props) => {
 
 
             </Form>
-
-
         </div>
-
     )
 }
 export default UpdateForm;
