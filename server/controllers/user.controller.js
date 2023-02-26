@@ -25,7 +25,7 @@ module.exports = {
         if(!correctPassword){
             return res.status(400).json({message: 'Incorrect Password'});
         }
-        const userToken = jwt.sign({ id: user._id, firstName: user.firstName }, process.env.SECRET_KEY);
+        const userToken = jwt.sign({ id: user._id}, process.env.SECRET_KEY);
 
         res
             .cookie('usertoken', userToken, {httpOnly: true})
@@ -40,6 +40,7 @@ module.exports = {
 
 
     getUserTodos: (req, res) => {
+        console.log(req.user.id)
         User.findOne({_id: req.user.id})
             .populate('todos')
             .then(user => res.json({user:user}))
