@@ -4,10 +4,9 @@ const User = require('../models/user.model')
 module.exports = {
     createTodo: (req,res) => {
         Todo.create(req.body)
-        console.log(req.user.id)
         .then(todo => {
             res.json(todo)
-            return User.findOneAndAupdate({_id: req.user.id}, {$push: {todos: todo._id}}, {new: true})
+            return User.findOneAndUpdate({_id: req.user.id}, {$push: {todos: todo._id}}, {new: true})
         })
         .catch(err => res.json(err))
     },
