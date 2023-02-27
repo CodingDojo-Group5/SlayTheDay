@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const TaskButton = () => {
     return (
         <div>
-            <h1>Update View</h1>
+
             <UpdateForm />
 
 

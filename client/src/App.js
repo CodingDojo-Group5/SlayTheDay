@@ -21,7 +21,7 @@ function App() {
           <Route path='/create' element={<Create />} />
           <Route element={<Main />} path="/user/todos" />
           <Route element={<CreateTask />} path='/todo/new' />
-          <Route element={< Update />} path='todo/:id/update' />
+          <Route element={< Update />} path='/todo/:id' />
 
         </Routes>
       </div>

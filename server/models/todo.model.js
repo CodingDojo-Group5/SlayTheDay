@@ -1,4 +1,4 @@
-const { mongoose, Schema }  = require('mongoose');
+const { mongoose, Schema } = require('mongoose');
 
 const TodoSchema = new mongoose.Schema({
     task: {
@@ -7,7 +7,7 @@ const TodoSchema = new mongoose.Schema({
     },
 
     dueDate: {
-        type: Date,
+        type: String,
     },
 
     todoStatus: {
@@ -17,6 +17,6 @@ const TodoSchema = new mongoose.Schema({
             message: "{VALUE} is not suppoorted"
         }
     }
-}, {timestamps: true});
+}, { timestamps: true });
 
 module.exports = mongoose.model("Todo", TodoSchema)
