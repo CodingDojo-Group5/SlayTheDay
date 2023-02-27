@@ -38,7 +38,7 @@ const TaskList = (props) => {
                                 <p>
                                     {task.task}
                                 </p>
-                                <Link to={`/todo/${task._id}/update`}>
+                                <Link to={`/todo/${task._id}`}>
                                     <Button variant="outline-secondary">
                                         Update
                                     </Button>{' '}
@@ -55,7 +55,7 @@ const TaskList = (props) => {
                                 <p>
                                     {task.task}
                                 </p>
-                                <Link to={`/todo/${task._id}/update`}>
+                                <Link to={`/todo/${task._id}`}>
                                     <Button variant="outline-secondary">
                                         Update
                                     </Button>{' '}
@@ -73,7 +73,7 @@ const TaskList = (props) => {
                                 <p>
                                     {task.task}
                                 </p>
-                                <Link to={`/todo/${task._id}/update`}>
+                                <Link to={`/todo/${task._id}`}>
                                     <Button variant="outline-secondary">
                                         Update
                                     </Button>{' '}

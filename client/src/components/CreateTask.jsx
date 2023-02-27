@@ -62,7 +62,7 @@ const CreateTask = (props) => {
                             />
                         </Form.Group >
                         <Form.Group className="mb-3">
-                            <Form.Select onChange={(e) => setToDoStatus(e.target.value)} >
+                            <Form.Select name="todoStatus" value={todoStatus} onChange={(e) => setToDoStatus(e.target.value)} >
                                 <option> Select Todo Status</option>
                                 <option value="not-started">Not-Started</option>
                                 <option value="in-progress">In-Progress</option>
