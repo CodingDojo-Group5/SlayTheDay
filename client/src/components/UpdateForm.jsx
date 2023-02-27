@@ -14,19 +14,20 @@ const UpdateForm = (props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/todo/' + id + '/update/')
+        axios.get(`http://localhost:8000/api/todo/${id} `, { withCredentials: true })
             .then((res) => {
-                setTask(res.data.user.task);
-                setDueDate(res.data.user.dueDate);
-                setToDoStatus(res.data.user.todoStatus);
-                console.log(res.data);
+                console.log(res.data[0])
+                setTask(res.data[0].task);
+                setDueDate(res.data[0].dueDate);
+                setToDoStatus(res.data[0].todoStatus);
+                console.log(task, dueDate, todoStatus)
             })
             .catch((err) => console.log(err));
     }, [])
 
     const updateTask = (e) => {
         e.preventDefault();
-        axios.put('http://localhost:8000/api/todo/' + id + '/update', {
+        axios.put(`http://localhost:8000/api/todo/${id}/update `, {
             task,
             dueDate,
             todoStatus
@@ -40,7 +41,7 @@ const UpdateForm = (props) => {
     }
 
     const deleteTask = (taskId) => {
-        axios.delete('http://localhost:8000/api/reservations/' + taskId)
+        axios.delete(`http://localhost:8000/api/todo/${id}/delete `)
             .then(res => {
                 console.log(res.data);
                 const newList = todos.filter((todos, index) => todos._id !== taskId)
@@ -50,10 +51,9 @@ const UpdateForm = (props) => {
                 console.log(err);
             });
     }
-
+    console.log(task, dueDate, todoStatus)
     return (
         <div>
-            <h1>Update Form</h1>
             <h2>Update {task} </h2>
             <Form onSubmit={updateTask} style={{ width: '400px' }} className="mb-3">
                 <Form.Group className="mb-3">
@@ -77,7 +77,7 @@ const UpdateForm = (props) => {
                     />
                 </Form.Group >
                 <Form.Group className="mb-3">
-                    <Form.Select onChange={(e) => setToDoStatus(e.target.value)} >
+                    <Form.Select name="todoStatus" value={todoStatus} onChange={(e) => setToDoStatus(e.target.value)} >
                         <option> Select Todo Status</option>
                         <option value="not-started">Not-Started</option>
                         <option value="in-progress">In-Progress</option>
@@ -85,11 +85,11 @@ const UpdateForm = (props) => {
                     </Form.Select>
 
                 </Form.Group>
-                <Button value="create" type="submit" variant="outline-success">
-                    Finish Edit
+                <Button type="submit" value="update" variant="outline-success">
+                    Update
                 </Button>{' '}
                 <Button variant="outline-danger" onClick={() => deleteTask(todos._id)} >
-
+                    Delete
                 </Button>{' '}
 
 
