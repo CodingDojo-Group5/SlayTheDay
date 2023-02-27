@@ -18,9 +18,9 @@ module.exports = {
             .then(todo => res.status(200).json(todo))
             .catch(err => res.status(500).json(err))
     },
-
-    updateTodo: (req, res) => {
-        Todo.findOneAndAupdate({ _id: req.params.id }, req.body, { new: true })
+    
+    updateTodo: (req, res) =>{
+        Todo.findOneAndUpdate({_id: req.params.id}, req.body, {new:true})
             .then(todo => res.json(todo))
             .catch(err => res.json(err))
     },
