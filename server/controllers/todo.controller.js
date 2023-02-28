@@ -20,7 +20,7 @@ module.exports = {
     },
 
     updateTodo: (req, res) => {
-        Todo.findOneAndAupdate({ _id: req.params.id }, req.body, { new: true })
+        Todo.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
             .then(todo => res.json(todo))
             .catch(err => res.json(err))
     },
