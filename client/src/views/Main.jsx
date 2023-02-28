@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TaskList from '../components/TaskList';
 import CreateTask from '../components/CreateTask';
+import LogoutButton from '../components/LogoutButton';
 
 const Main = (props) => {
 
@@ -8,6 +9,7 @@ const Main = (props) => {
 
     return (
         <div>
+            <LogoutButton />
             <h1 style={{ width: '800px', marginLeft: '400px' }} >Dashboard</h1>
             <br />
             <CreateTask todos={todos} setTodos={setTodos} />
