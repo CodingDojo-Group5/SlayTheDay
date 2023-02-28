@@ -1,9 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
-import { Button, Form } from 'react-bootstrap'
-import plus from '../img/patch-plus.svg';
-import { Link } from "react-router-dom";
+import { Button, Form } from 'react-bootstrap';
 
 
 const CreateTask = (props) => {
@@ -29,10 +27,12 @@ const CreateTask = (props) => {
                 setTask('');
                 setDueDate('');
                 setToDoStatus('');
+                // setToggle(false);
             })
             .catch(err => console.log(err))
 
     }
+
     return (
         <div style={{ width: '800px', marginLeft: '400px' }} >
             <Button onClick={() => setToggle(!toggle)}

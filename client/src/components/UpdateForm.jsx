@@ -2,7 +2,7 @@ import * as React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap'
-import { Link, useParams, useNavigate, } from "react-router-dom";
+import { useParams, useNavigate, } from "react-router-dom";
 
 
 const UpdateForm = (props) => {
@@ -16,11 +16,10 @@ const UpdateForm = (props) => {
     useEffect(() => {
         axios.get(`http://localhost:8000/api/todo/${id} `, { withCredentials: true })
             .then((res) => {
-                console.log(res.data[0])
+                console.log(res.data)
                 setTask(res.data[0].task);
                 setDueDate(res.data[0].dueDate);
                 setToDoStatus(res.data[0].todoStatus);
-                console.log(task, dueDate, todoStatus)
             })
             .catch((err) => console.log(err));
     }, [])
@@ -41,17 +40,17 @@ const UpdateForm = (props) => {
     }
 
     const deleteTask = (taskId) => {
-        axios.delete(`http://localhost:8000/api/todo/${id}/delete `)
+        axios.delete(`http://localhost:8000/api/todo/${id}/delete `, { withCredentials: true })
             .then(res => {
                 console.log(res.data);
                 const newList = todos.filter((todos, index) => todos._id !== taskId)
                 setTodos(newList);
+                navigate("/user/todos")
             })
             .catch((err) => {
                 console.log(err);
             });
     }
-    console.log(task, dueDate, todoStatus)
     return (
         <div>
             <h2>Update {task} </h2>
