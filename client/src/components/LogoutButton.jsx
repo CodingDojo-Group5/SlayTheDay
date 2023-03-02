@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import {BiMenuAltLeft} from 'react-icons/bi'
-import {BiMenuAltRight} from 'react-icons/bi'
+import { BiMenuAltLeft } from 'react-icons/bi'
+import { BiMenuAltRight } from 'react-icons/bi'
 import profile from '../assets/PFicon.png'
 
 
@@ -36,11 +36,11 @@ const LogoutButton = (props) => {
     }
     return (
         <div className={toggleSideMenu === 0 ? 'side-menu' : 'side-menu-c'}>
-            <button className={toggleSideMenu === 0 ? 'icon-s' : 'none'} onClick={SideMenuSwitch}><BiMenuAltLeft/></button>
-            <button className={toggleSideMenu === 0 ? 'none' : 'icon-s-r'} onClick={SideMenuSwitch}><BiMenuAltRight/></button>
+            <button className={toggleSideMenu === 0 ? 'icon-s' : 'none'} onClick={SideMenuSwitch}><BiMenuAltLeft /></button>
+            <button className={toggleSideMenu === 0 ? 'none' : 'icon-s-r'} onClick={SideMenuSwitch}><BiMenuAltRight /></button>
             <div className={toggleSideMenu === 0 ? 'none' : 'logout-m'}>
                 <div className="profile">
-                    <img src={profile} className='img-icon'/>
+                    <img src={profile} className='img-icon' />
                     <div className="profile-sub">
                         <p>
                             {firstName}

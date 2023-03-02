@@ -3,11 +3,11 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from "react-router-dom";
 import LogoutButton from '../components/LogoutButton';
-import {RiArrowGoBackLine} from 'react-icons/ri'
-import {BiSend} from 'react-icons/bi'
-import {GoTrashcan} from 'react-icons/go'
-import {BsCircle} from 'react-icons/bs'
-import {FcCheckmark} from 'react-icons/fc'
+import { RiArrowGoBackLine } from 'react-icons/ri'
+import { BiSend } from 'react-icons/bi'
+import { GoTrashcan } from 'react-icons/go'
+import { BsCircle } from 'react-icons/bs'
+import { FcCheckmark } from 'react-icons/fc'
 
 
 
@@ -68,7 +68,7 @@ const UpdateForm = (props) => {
             <div className="overlay"></div>
             <div className="dashboard">
                 <p className="c-name dash-t">
-                        <span>SlayTheDay</span>
+                    <span>SlayTheDay</span>
                 </p>
                 <div>
                     <p className='title'>Update Task</p>
@@ -79,12 +79,12 @@ const UpdateForm = (props) => {
                         <div className='task-form'>
                             <form onSubmit={updateTask} >
                                 <div className='task-selector'>
-                                    <textarea 
-                                    name='task' 
-                                    placeholder='Task Name' 
-                                    autoComplete='off' 
-                                    value={task} 
-                                    onChange={(e) => setTask(e.target.value)}></textarea>
+                                    <textarea
+                                        name='task'
+                                        placeholder='Task Name'
+                                        autoComplete='off'
+                                        value={task}
+                                        onChange={(e) => setTask(e.target.value)}></textarea>
                                 </div>
                                 <div className='sec-row'>
                                     <input
@@ -103,13 +103,13 @@ const UpdateForm = (props) => {
                                 <div className="task-line"></div>
                                 <div className="bot-row">
                                     <Link to='/user/todos' className='n-task'>
-                                        <RiArrowGoBackLine className='t-icon-s update-arrow'/>
+                                        <RiArrowGoBackLine className='t-icon-s update-arrow' />
                                     </Link>
                                     <button className='n-task' onClick={() => deleteTask(todos._id)} >
-                                        <GoTrashcan className='t-icon-s trash'/>
+                                        <GoTrashcan className='t-icon-s trash' />
                                     </button>
                                     <button type="submit" className='n-task'>
-                                        <BiSend className='t-icon-s send'/>
+                                        <BiSend className='t-icon-s send' />
                                     </button>
                                 </div>
                             </form>
@@ -120,19 +120,19 @@ const UpdateForm = (props) => {
                             <h2 className='list-h'>{todoStatus}</h2>
                             <div className="list-line"></div>
                             <div className="ind-task u-task-h">
-                                <BsCircle className={todoStatus === 'completed' ? 'none' : 'circle'}/>
-                                <FcCheckmark className={todoStatus === 'completed' ? 'check' : 'none'}/>
+                                <BsCircle className={todoStatus === 'completed' ? 'none' : 'circle'} />
+                                <FcCheckmark className={todoStatus === 'completed' ? 'check' : 'none'} />
                                 <div className="right-task">
                                     <p className={todoStatus === 'completed' ? 'p-ind-task crossed' : 'p-ind-task'}>
                                         {task}
                                     </p>
                                     <div className="b-ind-task">
                                         <p className='b-ind-date'>
-                                        {
-                                        dueDate
-                                            ? new Date(`${dueDate}T00:00:00Z`).toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric' })
-                                            : 'No due date'
-                                        }
+                                            {
+                                                dueDate
+                                                    ? new Date(`${dueDate}T00:00:00Z`).toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric' })
+                                                    : 'No due date'
+                                            }
                                         </p>
                                         <p className='edit'>
                                             edit

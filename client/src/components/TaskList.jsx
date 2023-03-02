@@ -2,8 +2,8 @@ import * as React from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { Link } from "react-router-dom";
-import {BsCircle} from 'react-icons/bs'
-import {FcCheckmark} from 'react-icons/fc'
+import { BsCircle } from 'react-icons/bs'
+import { FcCheckmark } from 'react-icons/fc'
 
 
 const TaskList = (props) => {
@@ -17,12 +17,12 @@ const TaskList = (props) => {
             .catch((err) => console.log(err));
     }, [setTodos])
 
-    
+
 
     const notStarted = todos.filter(task => task.todoStatus === 'not-started').sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
     const inProgress = todos.filter(task => task.todoStatus === 'in-progress').sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
     const completed = todos.filter(task => task.todoStatus === 'completed').sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
-    
+
 
     return (
         <div className='task-list'>
@@ -33,18 +33,18 @@ const TaskList = (props) => {
                 (
                     <div key={index} className="ind-task">
                         <Link className='link-task' to={`/todo/${task._id}`}>
-                            <BsCircle className='circle'/>
+                            <BsCircle className='circle' />
                             <div className="right-task">
                                 <p className='p-ind-task'>
                                     {task.task}
                                 </p>
                                 <div className="b-ind-task">
                                     <p className='b-ind-date'>
-                                    {
-                                    task.dueDate
-                                        ? new Date(`${task.dueDate}T00:00:00Z`).toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric' })
-                                        : 'No due date'
-                                    }
+                                        {
+                                            task.dueDate
+                                                ? new Date(`${task.dueDate}T00:00:00Z`).toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric' })
+                                                : 'No due date'
+                                        }
                                     </p>
                                     <p className='edit'>
                                         Edit
@@ -64,18 +64,18 @@ const TaskList = (props) => {
                 (
                     <div key={index} className="ind-task">
                         <Link className='link-task' to={`/todo/${task._id}`}>
-                            <BsCircle className='circle'/>
+                            <BsCircle className='circle' />
                             <div className="right-task">
                                 <p className='p-ind-task'>
                                     {task.task}
                                 </p>
                                 <div className="b-ind-task">
                                     <p className='b-ind-date'>
-                                    {
-                                    task.dueDate
-                                        ? new Date(`${task.dueDate}T00:00:00Z`).toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric' })
-                                        : 'No due date'
-                                    }
+                                        {
+                                            task.dueDate
+                                                ? new Date(`${task.dueDate}T00:00:00Z`).toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric' })
+                                                : 'No due date'
+                                        }
                                     </p>
                                     <p className='edit'>
                                         Edit
@@ -94,18 +94,18 @@ const TaskList = (props) => {
                 (
                     <div key={index} className="ind-task">
                         <Link className='link-task' to={`/todo/${task._id}`}>
-                            <FcCheckmark className='check'/>
+                            <FcCheckmark className='check' />
                             <div className="right-task">
                                 <p className='p-ind-task crossed'>
                                     {task.task}
                                 </p>
                                 <div className="b-ind-task">
                                     <p className='b-ind-date'>
-                                    {
-                                    task.dueDate
-                                        ? new Date(`${task.dueDate}T00:00:00Z`).toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric' })
-                                        : 'No due date'
-                                    }
+                                        {
+                                            task.dueDate
+                                                ? new Date(`${task.dueDate}T00:00:00Z`).toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric' })
+                                                : 'No due date'
+                                        }
                                     </p>
                                     <p className='edit'>
                                         Edit

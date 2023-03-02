@@ -1,9 +1,9 @@
 import * as React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
-import {AiOutlinePlus} from 'react-icons/ai'
-import {BiSend} from 'react-icons/bi'
-import {TiCancel} from 'react-icons/ti'
+import { AiOutlinePlus } from 'react-icons/ai'
+import { BiSend } from 'react-icons/bi'
+import { TiCancel } from 'react-icons/ti'
 
 
 const CreateTask = (props) => {
@@ -35,28 +35,30 @@ const CreateTask = (props) => {
             })
             .catch((err) => {
                 console.log(err)
-                setErrors(err.response.data);
+                console.log(err.response.data.errors);
+                setErrors(err.response.data.errors);
             })
 
     }
 
     return (
         <div>
-            
+
             <button className='n-task' onClick={() => setToggle(!toggle)}>
-            <AiOutlinePlus className={toggle === false ? 'f-icon' : 'none'}/>
-            <p className={toggle === false ? '' : 'none'}>New Task</p>
+                <AiOutlinePlus className={toggle === false ? 'f-icon' : 'none'} />
+                <p className={toggle === false ? '' : 'none'}>New Task</p>
             </button>
             {toggle && (
                 <div className='task-form'>
                     <form onSubmit={onSubmitHandler} >
                         <div className='task-selector'>
-                            <textarea 
-                            name='task' 
-                            placeholder='Task Name' 
-                            autoComplete='off' 
-                            value={task} 
-                            onChange={(e) => setTask(e.target.value)}></textarea>
+                            <textarea
+                                name='task'
+                                placeholder='Task Name'
+                                autoComplete='off'
+                                value={task}
+                                onChange={(e) => setTask(e.target.value)}></textarea>
+                            {errors.task ? <p >{errors.task.message}</p> : null}
                         </div>
                         <div className='sec-row'>
                             <input
@@ -72,14 +74,14 @@ const CreateTask = (props) => {
                                 <option value="completed">Completed</option>
                             </select>
                         </div >
+                        {errors.todoStatus ? <p >{errors.todoStatus.message}</p> : null}
                         <div className="task-line"></div>
-                        <div>{errors.task ? errors.task.message : null}</div>
                         <div className="bot-row">
                             <button className='n-task' onClick={() => setToggle(!toggle)}>
-                                <TiCancel className='t-icon-s trash'/>
+                                <TiCancel className='t-icon-s trash' />
                             </button>
                             <button type="submit" className='n-task'>
-                                <BiSend className='t-icon-s send'/>
+                                <BiSend className='t-icon-s send' />
                             </button>
                         </div>
                     </form>
