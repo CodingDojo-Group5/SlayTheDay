@@ -1,22 +1,23 @@
-const { mongoose, Schema }  = require('mongoose');
+const { mongoose, Schema } = require('mongoose');
 
 const TodoSchema = new mongoose.Schema({
     task: {
         type: String,
-        required: [true, "Please enter the task you want to accomplish"]
+        required: [true, "Please specify your task"],
+        minlength: [1, "Please specify your task"]
     },
 
     dueDate: {
-        type: Date,
+        type: String,
     },
 
     todoStatus: {
         type: String,
         enum: {
             values: ['not-started', 'in-progress', 'completed'],
-            message: "{VALUE} is not suppoorted"
+            message: "Status is Required"
         }
     }
-}, {timestamps: true});
+}, { timestamps: true });
 
 module.exports = mongoose.model("Todo", TodoSchema)
