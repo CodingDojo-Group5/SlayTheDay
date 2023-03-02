@@ -2,8 +2,8 @@ import * as React from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { Row, Col, Container, Button } from 'react-bootstrap'
-
+import { BsCircle } from 'react-icons/bs'
+import { FcCheckmark } from 'react-icons/fc'
 
 
 const TaskList = (props) => {
@@ -15,74 +15,107 @@ const TaskList = (props) => {
                 setTodos(res.data.user.todos);
             })
             .catch((err) => console.log(err));
-    }, [])
+    }, [setTodos])
 
-    const notStarted = todos.filter(task => task.todoStatus == 'not-started');
-    const inProgress = todos.filter(task => task.todoStatus == 'in-progress');
-    const completed = todos.filter(task => task.todoStatus == 'completed');
+
+
+    const notStarted = todos.filter(task => task.todoStatus === 'not-started').sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+    const inProgress = todos.filter(task => task.todoStatus === 'in-progress').sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+    const completed = todos.filter(task => task.todoStatus === 'completed').sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+
 
     return (
-        <div style={{ width: '800px', marginLeft: '400px' }}>
-
-            <h1>Task List </h1>
-            <hr />
-            <Container>
-                <Row >
-                    <Col>
-                        <h2>Not Completed</h2>
-                        {notStarted.map((task, index) =>
-                        (
-                            <div key={index} className='d-flex p-2 justify-content-evenly'>
-                                <p>
+        <div className='task-list'>
+            <div className="list">
+                <h2 className='list-h'>Not Started</h2>
+                <div className="list-line"></div>
+                {notStarted.map((task, index) =>
+                (
+                    <div key={index} className="ind-task">
+                        <Link className='link-task' to={`/todo/${task._id}`}>
+                            <BsCircle className='circle' />
+                            <div className="right-task">
+                                <p className='p-ind-task'>
                                     {task.task}
                                 </p>
-                                <Link to={`/todo/${task._id}`}>
-                                    <Button variant="outline-secondary">
-                                        Update
-                                    </Button>{' '}
-                                </Link>
+                                <div className="b-ind-task">
+                                    <p className='b-ind-date'>
+                                        {
+                                            task.dueDate
+                                                ? new Date(`${task.dueDate}T00:00:00Z`).toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric' })
+                                                : 'No due date'
+                                        }
+                                    </p>
+                                    <p className='edit'>
+                                        Edit
+                                    </p>
+                                </div>
                             </div>
-                        ))}
-                    </Col>
+                        </Link>
+                    </div>
+                ))}
+            </div>
 
-                    <Col>
-                        <h2>In Progress</h2>
-                        {inProgress.map((task, index) =>
-                        (
-                            <div key={index} className='d-flex p-2 justify-content-evenly'>
-                                <p>
+            <div className="list">
+                <h2 className='list-h'>In Progress</h2>
+                <div className="list-line"></div>
+
+                {inProgress.map((task, index) =>
+                (
+                    <div key={index} className="ind-task">
+                        <Link className='link-task' to={`/todo/${task._id}`}>
+                            <BsCircle className='circle' />
+                            <div className="right-task">
+                                <p className='p-ind-task'>
                                     {task.task}
                                 </p>
-                                <Link to={`/todo/${task._id}`}>
-                                    <Button variant="outline-secondary">
-                                        Update
-                                    </Button>{' '}
-                                </Link>
+                                <div className="b-ind-task">
+                                    <p className='b-ind-date'>
+                                        {
+                                            task.dueDate
+                                                ? new Date(`${task.dueDate}T00:00:00Z`).toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric' })
+                                                : 'No due date'
+                                        }
+                                    </p>
+                                    <p className='edit'>
+                                        Edit
+                                    </p>
+                                </div>
                             </div>
+                        </Link>
+                    </div>
+                ))}
+            </div>
 
-                        ))}
-
-                    </Col>
-                    <Col>
-                        <h2> Completed</h2>
-                        {completed.map((task, index) =>
-                        (
-                            <div key={index} className='d-flex p-2 justify-content-evenly'>
-                                <p>
+            <div className="list">
+                <h2 className='list-h'> Completed</h2>
+                <div className="list-line"></div>
+                {completed.map((task, index) =>
+                (
+                    <div key={index} className="ind-task">
+                        <Link className='link-task' to={`/todo/${task._id}`}>
+                            <FcCheckmark className='check' />
+                            <div className="right-task">
+                                <p className='p-ind-task crossed'>
                                     {task.task}
                                 </p>
-                                <Link to={`/todo/${task._id}`}>
-                                    <Button variant="outline-secondary">
-                                        Update
-                                    </Button>{' '}
-                                </Link>
+                                <div className="b-ind-task">
+                                    <p className='b-ind-date'>
+                                        {
+                                            task.dueDate
+                                                ? new Date(`${task.dueDate}T00:00:00Z`).toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric' })
+                                                : 'No due date'
+                                        }
+                                    </p>
+                                    <p className='edit'>
+                                        Edit
+                                    </p>
+                                </div>
                             </div>
-
-                        ))}
-
-                    </Col>
-                </Row>
-            </Container>
+                        </Link>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }
