@@ -3,7 +3,8 @@ const { mongoose, Schema } = require('mongoose');
 const TodoSchema = new mongoose.Schema({
     task: {
         type: String,
-        required: [true, "Please enter the task you want to accomplish"]
+        required: [true, "Please specify your task"],
+        minlength: [1, "Please specify your task"]
     },
 
     dueDate: {
