@@ -57,15 +57,15 @@ const Create = () => {
                         </div>
                     </div>
 
-                    <div>
+                    <div className='form-selector'>
                         <input onChange={handleRegInputs} name='email' type="text" placeholder='Email' /><br />
                         <div className='errors'>{errors.email ? errors.email.message : null}</div>
                     </div>
-                    <div>
+                    <div className='form-selector'>
                         <input onChange={handleRegInputs} name='password' type="password" placeholder='Password' />
                         <div className='errors'>{errors.password ? errors.password.message : null}</div>
                     </div>
-                    <div>
+                    <div className='form-selector'>
                         <input onChange={handleRegInputs} name='confirmPassword' type="password" placeholder='Confirm Password' />
                         <div className='errors'>{errors.confirmPassword ? errors.confirmPassword.message : null}</div>
                     </div>

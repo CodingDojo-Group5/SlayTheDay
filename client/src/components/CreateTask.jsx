@@ -1,7 +1,9 @@
 import * as React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import {AiOutlinePlus} from 'react-icons/ai'
+import {BiSend} from 'react-icons/bi'
+import {TiCancel} from 'react-icons/ti'
 
 
 const CreateTask = (props) => {
@@ -11,6 +13,8 @@ const CreateTask = (props) => {
     const [dueDate, setDueDate] = useState('');
     const [todoStatus, setToDoStatus] = useState('');
     const [toggle, setToggle] = useState(false);
+    const [errors, setErrors] = useState({});
+
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -27,59 +31,61 @@ const CreateTask = (props) => {
                 setTask('');
                 setDueDate('');
                 setToDoStatus('');
-                // setToggle(false);
+                setToggle(!toggle);
             })
-            .catch(err => console.log(err))
+            .catch((err) => {
+                console.log(err)
+                setErrors(err.response.data);
+            })
 
     }
 
     return (
-        <div style={{ width: '800px', marginLeft: '400px' }} >
-            <Button onClick={() => setToggle(!toggle)}
-                variant="outline-info" className="mb-3">  New Task
-            </Button>
+        <div>
+            
+            <button className='n-task' onClick={() => setToggle(!toggle)}>
+            <AiOutlinePlus className={toggle === false ? 'f-icon' : 'none'}/>
+            <p className={toggle === false ? '' : 'none'}>New Task</p>
+            </button>
             {toggle && (
-                <div>
-                    <Form onSubmit={onSubmitHandler} style={{ width: '400px' }} className="mb-3">
-                        <Form.Group className="mb-3">
-                            <Form.Control
-                                type='text'
-                                name='task'
-                                placeholder="Task name"
-                                value={task}
-                                onChange={(e) => setTask(e.target.value)}
-                            />
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>
-                                Task Due Date
-                            </Form.Label>
-                            <Form.Control
+                <div className='task-form'>
+                    <form onSubmit={onSubmitHandler} >
+                        <div className='task-selector'>
+                            <textarea 
+                            name='task' 
+                            placeholder='Task Name' 
+                            autoComplete='off' 
+                            value={task} 
+                            onChange={(e) => setTask(e.target.value)}></textarea>
+                        </div>
+                        <div className='sec-row'>
+                            <input
                                 type="date"
                                 name='dueDate'
                                 value={dueDate}
                                 onChange={(e) => setDueDate(e.target.value)}
                             />
-                        </Form.Group >
-                        <Form.Group className="mb-3">
-                            <Form.Select name="todoStatus" value={todoStatus} onChange={(e) => setToDoStatus(e.target.value)} >
-                                <option> Select Todo Status</option>
+                            <select name="todoStatus" value={todoStatus} onChange={(e) => setToDoStatus(e.target.value)} >
+                                <option>Todo Status</option>
                                 <option value="not-started">Not-Started</option>
                                 <option value="in-progress">In-Progress</option>
                                 <option value="completed">Completed</option>
-                            </Form.Select>
-
-                        </Form.Group>
-                        <Button value="create" type="submit" variant="outline-success">
-                            Add Task
-                        </Button>
-
-
-                    </Form>
+                            </select>
+                        </div >
+                        <div className="task-line"></div>
+                        <div>{errors.task ? errors.task.message : null}</div>
+                        <div className="bot-row">
+                            <button className='n-task' onClick={() => setToggle(!toggle)}>
+                                <TiCancel className='t-icon-s trash'/>
+                            </button>
+                            <button type="submit" className='n-task'>
+                                <BiSend className='t-icon-s send'/>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             )}
         </div>
-
     )
 }
 export default CreateTask;

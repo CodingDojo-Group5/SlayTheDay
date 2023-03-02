@@ -8,10 +8,7 @@ const Update = () => {
 
     return (
         <div>
-
             <UpdateForm todos={todos} setTodos={setTodos} />
-
-
         </div>
 
     )

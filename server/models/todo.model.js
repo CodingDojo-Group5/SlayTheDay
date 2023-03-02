@@ -14,7 +14,7 @@ const TodoSchema = new mongoose.Schema({
         type: String,
         enum: {
             values: ['not-started', 'in-progress', 'completed'],
-            message: "{VALUE} is not suppoorted"
+            message: "Status is Required"
         }
     }
 }, { timestamps: true });
