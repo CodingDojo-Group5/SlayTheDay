@@ -58,23 +58,27 @@ const CreateTask = (props) => {
                                 autoComplete='off'
                                 value={task}
                                 onChange={(e) => setTask(e.target.value)}></textarea>
-                            {errors.task ? <p >{errors.task.message}</p> : null}
+                            <div className='select-errors space'>{errors.task ? <p >{errors.task.message}</p> : null}</div>
                         </div>
                         <div className='sec-row'>
-                            <input
-                                type="date"
-                                name='dueDate'
-                                value={dueDate}
-                                onChange={(e) => setDueDate(e.target.value)}
-                            />
-                            <select name="todoStatus" value={todoStatus} onChange={(e) => setToDoStatus(e.target.value)} >
-                                <option>Todo Status</option>
-                                <option value="not-started">Not-Started</option>
-                                <option value="in-progress">In-Progress</option>
-                                <option value="completed">Completed</option>
-                            </select>
+                            <div>
+                                <input
+                                    type="date"
+                                    name='dueDate'
+                                    value={dueDate}
+                                    onChange={(e) => setDueDate(e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <select className='select' name="todoStatus" value={todoStatus} onChange={(e) => setToDoStatus(e.target.value)} >
+                                    <option>Todo Status</option>
+                                    <option value="not-started">Not-Started</option>
+                                    <option value="in-progress">In-Progress</option>
+                                    <option value="completed">Completed</option>
+                                </select>
+                                <div className='select-errors'>{errors.todoStatus ? <p >{errors.todoStatus.message}</p> : null}</div>
+                            </div>
                         </div >
-                        {errors.todoStatus ? <p >{errors.todoStatus.message}</p> : null}
                         <div className="task-line"></div>
                         <div className="bot-row">
                             <button className='n-task' onClick={() => setToggle(!toggle)}>
