@@ -5,10 +5,10 @@ module.exports = {
     createTodo: (req, res) => {
         Todo.create(req.body)
             .then(todo => {
-                res.json(todo)
+                res.status(200).json(todo)
                 return User.findOneAndUpdate({ _id: req.user.id }, { $push: { todos: todo._id } }, { new: true })
             })
-            .catch(err => res.json(err))
+            .catch(err => res.status(400).json(err))
     },
 
     getOneTodo: (req, res) => {

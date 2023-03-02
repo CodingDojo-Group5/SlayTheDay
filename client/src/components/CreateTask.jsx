@@ -35,7 +35,8 @@ const CreateTask = (props) => {
             })
             .catch((err) => {
                 console.log(err)
-                setErrors(err.response.data);
+                console.log(err.response.data.errors);
+                setErrors(err.response.data.errors);
             })
 
     }
@@ -57,6 +58,7 @@ const CreateTask = (props) => {
                                 autoComplete='off'
                                 value={task}
                                 onChange={(e) => setTask(e.target.value)}></textarea>
+                            {errors.task ? <p >{errors.task.message}</p> : null}
                         </div>
                         <div className='sec-row'>
                             <input
@@ -72,8 +74,8 @@ const CreateTask = (props) => {
                                 <option value="completed">Completed</option>
                             </select>
                         </div >
+                        {errors.todoStatus ? <p >{errors.todoStatus.message}</p> : null}
                         <div className="task-line"></div>
-                        <div>{errors.task ? errors.task.message : null}</div>
                         <div className="bot-row">
                             <button className='n-task' onClick={() => setToggle(!toggle)}>
                                 <TiCancel className='t-icon-s trash' />
