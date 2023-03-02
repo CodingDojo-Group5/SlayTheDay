@@ -10,12 +10,20 @@ const Main = (props) => {
     return (
         <div>
             <LogoutButton />
-            <h1 style={{ width: '800px', marginLeft: '400px' }} >Dashboard</h1>
-            <br />
-            <CreateTask todos={todos} setTodos={setTodos} />
-            <br />
-            <TaskList todos={todos} setTodos={setTodos} />
-
+            <div className="overlay"></div>
+            <div className="dashboard">
+                <p className="c-name dash-t">
+                    <span>SlayTheDay</span>
+                </p>
+                <div>
+                    <p className='title'>Task Manager</p>
+                    <div className="d-line"></div>
+                </div>
+                <div className="list-items">
+                    <CreateTask todos={todos} setTodos={setTodos} />
+                    <TaskList todos={todos} setTodos={setTodos} />
+                </div>
+            </div>
         </div>
     )
 }

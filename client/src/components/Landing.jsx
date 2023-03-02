@@ -47,11 +47,11 @@ const Landing = () => {
             <div className="lb-right">
                 <form className='l-form' onSubmit={handleLogin}>
 
-                    <div>
+                    <div className='form-selector'>
                         <input onChange={handleLoginInputs} name='email' type="text" placeholder='Email' /><br />
                         <div className='errors'>{errors && (errors.message || (errors.data && errors.data.message)) ? (errors.message || errors.data.message) : null}</div>
                     </div>
-                    <div>
+                    <div className='form-selector'>
                         <input onChange={handleLoginInputs} name='password' type="password" placeholder='Password' />
                     </div>
                     <input type="submit" value="Log In" className='l-btn' />
